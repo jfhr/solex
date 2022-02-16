@@ -50,6 +50,9 @@
         const valid = await validateTransaction(origin, id)
         if (valid) {
             transaction.status = valid.status
+            if (transaction.status === 'verified') {
+                clearInterval(transactionInterval)
+            }
             if (valid.signature) {
                 transaction.signature = valid.signature
             }
